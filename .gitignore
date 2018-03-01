@@ -1,0 +1,6 @@
+# Classes auto-generated at compile
+**/*.class 
+
+# Stuff netbeans
+nb-configuration.xml
+
