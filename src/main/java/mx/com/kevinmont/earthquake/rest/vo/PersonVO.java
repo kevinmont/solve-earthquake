@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.kevinmont.earthquake.issue.rest.vo;
+package mx.com.kevinmont.earthquake.rest.vo;
 
 import java.awt.Image;
 

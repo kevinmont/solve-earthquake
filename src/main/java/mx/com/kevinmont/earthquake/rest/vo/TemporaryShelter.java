@@ -1,4 +1,4 @@
-package mx.kevinmont.earthquake.issue.rest.vo;
+package mx.com.kevinmont.earthquake.rest.vo;
 
 /**
  *

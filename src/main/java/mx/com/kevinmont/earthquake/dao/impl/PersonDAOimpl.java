@@ -12,9 +12,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import mx.kevinmont.earthquake.issue.dao.PersonDAO;
+import mx.com.kevinmont.earthquake.issue.dao.PersonDAO;
 import mx.com.kevinmont.earthquake.dao.utils.AbstractDAO;
-import mx.kevinmont.earthquake.issue.rest.vo.PersonVO;
+import mx.com.kevinmont.earthquake.rest.vo.PersonVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package mx.com.kevinmont.earthquake;
 
 import java.util.Scanner;
-import mx.kevinmont.earthquake.issue.dao.PersonDAO;
+import mx.com.kevinmont.earthquake.issue.dao.PersonDAO;
 import mx.com.kevinmont.earthquake.dao.impl.PersonDAOimpl;
 import mx.com.kevinmont.earthquake.dao.utils.AbstractDAO;
 import mx.com.kevinmont.earthquake.rest.controller.Controller;

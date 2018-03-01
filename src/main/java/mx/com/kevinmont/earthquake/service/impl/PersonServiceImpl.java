@@ -6,9 +6,9 @@
 package mx.com.kevinmont.earthquake.service.impl;
 
 import java.util.List;
-import mx.kevinmont.earthquake.issue.dao.PersonDAO;
+import mx.com.kevinmont.earthquake.issue.dao.PersonDAO;
 import mx.com.kevinmont.earthquake.dao.utils.AbstractDAO;
-import mx.kevinmont.earthquake.issue.rest.vo.PersonVO;
+import mx.com.kevinmont.earthquake.rest.vo.PersonVO;
 import mx.com.kevinmont.earthquake.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

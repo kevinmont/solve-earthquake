@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.kevinmont.earthquake.issue.dao;
+package mx.com.kevinmont.earthquake.issue.dao;
 
 import java.util.List;
-import mx.kevinmont.earthquake.issue.rest.vo.PersonVO;
+import mx.com.kevinmont.earthquake.rest.vo.PersonVO;
 
 /**
  *

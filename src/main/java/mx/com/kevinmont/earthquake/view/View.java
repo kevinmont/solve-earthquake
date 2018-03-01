@@ -6,7 +6,7 @@
 package mx.com.kevinmont.earthquake.view;
 
 import java.util.List;
-import mx.kevinmont.earthquake.issue.rest.vo.PersonVO;
+import mx.com.kevinmont.earthquake.rest.vo.PersonVO;
 import org.springframework.stereotype.Component;
 
 /**

@@ -6,7 +6,7 @@
 package mx.com.kevinmont.earthquake.rest.controller;
 
 import java.util.Scanner;
-import mx.kevinmont.earthquake.issue.rest.vo.PersonVO;
+import mx.com.kevinmont.earthquake.rest.vo.PersonVO;
 import mx.com.kevinmont.earthquake.service.PersonService;
 import mx.com.kevinmont.earthquake.view.View;
 import org.springframework.beans.factory.annotation.Autowired;
