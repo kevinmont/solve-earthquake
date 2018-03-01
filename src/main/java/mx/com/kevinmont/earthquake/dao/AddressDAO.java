@@ -1,4 +1,4 @@
-package mx.com.kevinmont.earthquake.issue.dao;
+package mx.com.kevinmont.earthquake.dao;
 
 /**
  *

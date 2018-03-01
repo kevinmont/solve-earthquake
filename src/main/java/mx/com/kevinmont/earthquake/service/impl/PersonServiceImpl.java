@@ -6,7 +6,7 @@
 package mx.com.kevinmont.earthquake.service.impl;
 
 import java.util.List;
-import mx.com.kevinmont.earthquake.issue.dao.PersonDAO;
+import mx.com.kevinmont.earthquake.dao.PersonDAO;
 import mx.com.kevinmont.earthquake.dao.utils.AbstractDAO;
 import mx.com.kevinmont.earthquake.rest.vo.PersonVO;
 import mx.com.kevinmont.earthquake.service.PersonService;

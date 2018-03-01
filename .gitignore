@@ -4,3 +4,13 @@
 # Stuff netbeans
 nb-configuration.xml
 
+# Stuff eclipse
+.metadata/
+.classpath
+.project
+.settings/
+RemoteSystemsTempFiles/
+studio_id.xml
+
+# maven builds generated
+target/

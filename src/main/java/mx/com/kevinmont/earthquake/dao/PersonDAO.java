@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.com.kevinmont.earthquake.issue.dao;
+package mx.com.kevinmont.earthquake.dao;
 
 import java.util.List;
 import mx.com.kevinmont.earthquake.rest.vo.PersonVO;
