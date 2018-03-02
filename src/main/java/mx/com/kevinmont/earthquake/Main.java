@@ -27,7 +27,7 @@ public class Main {
         jdbcDao.setUrl("jdbc:mysql://127.0.0.1:3306/vidas");
         
         
-        PersonService personService= new PersonServiceImpl();
+        PersonServiceImpl personService= new PersonServiceImpl();
         personService.setPersonDAO(jdbcDao);
         
         Controller controller = new Controller();

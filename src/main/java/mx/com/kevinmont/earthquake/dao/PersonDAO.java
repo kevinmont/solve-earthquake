@@ -16,11 +16,11 @@ public interface PersonDAO {
     
     int update(PersonVO person);
     
-    boolean delete(int id);
+    int delete(int id);
     
-    boolean add(PersonVO person);
+    String create(PersonVO person);
     
-    PersonVO retrieve();
+    PersonVO retrieve(int id);
     
     List<PersonVO> retrieveAll();
     

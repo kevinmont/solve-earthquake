@@ -20,50 +20,50 @@ import org.springframework.stereotype.Component;
 @Component
 public class PersonServiceImpl implements PersonService {
 
-    @Autowired
     private PersonDAO personDAO;
 
     @Override
-    public String create(PersonVO personVO) {
+    public String createPerson(PersonVO personVO) {
         /*Here must be the model logic*/
         if (personVO == null) {
             return "Error datos no validos";
         }
 
         if (personVO.getAge() < 1) {
-            throw new IllegalArgumentException("age of a person must be greater than" + personVO.getAge());
+            throw new IllegalArgumentException("Person's age must be greater than " + personVO.getAge());
         }
-        personDAO.add(personVO);
+        personDAO.create(personVO);
         return personVO.getName();
     }
 
-    @Override
-    public int delete(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public int updatePerson(PersonVO person) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-    @Override
-    public List<PersonVO> retrieveAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public PersonVO retrievePersonById(int id) {
+		if(id<1)
+			throw new IllegalArgumentException("Person's id must be greater than " +id);
+		return personDAO.retrieve(id);
+	}
 
-    @Override
-    public int update(PersonVO personVo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public List<PersonVO> retrievePersons() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    /**
-     * @return the personDAO
-     */
-    public PersonDAO getAbstractDAO() {
-        return personDAO;
-    }
+	@Override
+	public int deletePersonById(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Autowired
+	public void setPersonDAO(PersonDAO personDAO) {
+		this.personDAO=personDAO;
+	}
 
-    /**
-     * @param personDAO the personDAO to set
-     */
-    @Override
-    public void setPersonDAO(PersonDAO personDAO) {
-        this.personDAO = personDAO;
-    }
 }

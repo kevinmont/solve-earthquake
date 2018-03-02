@@ -56,7 +56,7 @@ public class Controller {
         getView().showTypeTemporaryShelter();
         personVo.setTemporaryShelter(getScanner().nextShort());
         
-        getPersonService().create(personVo);
+        getPersonService().createPerson(personVo);
     }
 
     /**
@@ -104,6 +104,6 @@ public class Controller {
     private PersonService personService;
     @Autowired
     private View view;
-    @Autowired
+ 
     private Scanner scanner;
 }
