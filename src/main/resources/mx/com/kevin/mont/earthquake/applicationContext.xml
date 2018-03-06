@@ -15,7 +15,5 @@
      
      
      
-    <context:component-scan base-package="mx.com.kevinmont.earthquake"/>
-    <context:property-placeholder 
-    	location="classpath:/mx/com/kevin/mont/earthquake/properties/dataSource.properties"/>
+   
 </beans>

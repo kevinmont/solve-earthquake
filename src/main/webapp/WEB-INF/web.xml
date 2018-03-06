@@ -3,14 +3,15 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 				http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 	<display-name>solve-earthquake</display-name>
-	
+
 	<listener>
-        <listener-class>mx.com.kevinmont.earthquake.rest.controller.ApplicationContextListener</listener-class>
-    </listener>
-    
+		<listener-class>mx.com.kevinmont.earthquake.rest.controller.ApplicationContextListener
+		</listener-class>
+	</listener>
+
 	<servlet>
 		<servlet-name>PersonController</servlet-name>
-		<servlet-class>mx.com.kevinmont.earthquake.rest.controller.impl.PersonControllerImpl</servlet-class>
+		<servlet-class>mx.com.kevinmont.controller.impl.PersonControllerImpl</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -18,10 +19,24 @@
 		<url-pattern>/people</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/solve.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/solver/*</url-pattern>
+	</servlet-mapping>
+
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
-	
+
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
