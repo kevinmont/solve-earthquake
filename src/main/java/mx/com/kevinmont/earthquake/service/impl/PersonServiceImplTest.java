@@ -21,7 +21,7 @@ public class PersonServiceImplTest {
 	
 	@Test
 	public void getPersont() {
-		PersonVO personVO= personService.retrievePersonById(2);
+		PersonVO personVO= personService.retrievePersonById(1);
 		assertNotNull(personVO);
 	}
 

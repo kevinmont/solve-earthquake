@@ -11,10 +11,11 @@ public class AdvicesPerson {
 	private static final Logger logger = Logger.getLogger(AdvicesPerson.class);
 
 	@Around("@annotation(ConfigAOP)")
-	public void aspec( ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+	public Object aspec( ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 		this.logger.info("Initized method: "+ proceedingJoinPoint.getSignature().getName());
-		proceedingJoinPoint.proceed();
+		Object p=proceedingJoinPoint.proceed();
 		this.logger.info("Ending method: "+ proceedingJoinPoint.getSignature().getName());
+		return p;
 	}
 	
 }
