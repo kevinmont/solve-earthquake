@@ -6,6 +6,8 @@
 package mx.com.kevinmont.earthquake.service.impl;
 
 import java.util.List;
+
+import mx.com.kevinmont.earthquake.config.ConfigAOP;
 import mx.com.kevinmont.earthquake.dao.PersonDAO;
 import mx.com.kevinmont.earthquake.dao.utils.AbstractDAO;
 import mx.com.kevinmont.earthquake.rest.vo.PersonVO;
@@ -43,6 +45,7 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
+	@ConfigAOP
 	public PersonVO retrievePersonById(int id) {
 		if(id<1)
 			throw new IllegalArgumentException("Person's id must be greater than " +id);
