@@ -12,7 +12,7 @@ public class AdvicesPerson {
 
 	@Around("@annotation(ConfigAOP)")
 	public Object aspec( ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-		this.logger.info("Initized method: "+ proceedingJoinPoint.getSignature().getName());
+		this.logger.info("Starting method: "+ proceedingJoinPoint.getSignature().getName());
 		Object p=proceedingJoinPoint.proceed();
 		this.logger.info("Ending method: "+ proceedingJoinPoint.getSignature().getName());
 		return p;

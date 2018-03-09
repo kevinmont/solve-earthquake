@@ -24,5 +24,11 @@ public class PersonServiceImplTest {
 		PersonVO personVO= personService.retrievePersonById(1);
 		assertNotNull(personVO);
 	}
-
+	
+	@Test
+	public void deletePersonVO() {
+		int a= personService.deletePersonById(21);
+		assertTrue(a==0);
+		
+	}
 }

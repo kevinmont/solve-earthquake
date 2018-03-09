@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,20 +28,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class PersonDAOimpl extends AbstractDAO implements PersonDAO {
 
-	Connection connection;
-	ResultSet resultSet;
+	private Connection connection = null;
+	private ResultSet resultSet = null;
+	private PreparedStatement preparedStatement = null;
 
 	@Override
 	public PersonVO retrieve(int id) {
-		PreparedStatement statement = null;
-		PersonVO personVO=null;
+		PersonVO personVO = null;
 		try {
-			connection = getConnection();
+			this.connection = getConnection();
 			String sql = "SELECT * FROM person where person_id = ?";
 			personVO = new PersonVO();
-			statement = connection.prepareStatement(sql);
-			statement.setInt(1, id);
-			resultSet = statement.executeQuery();
+			this.preparedStatement = this.connection.prepareStatement(sql);
+			this.preparedStatement.setInt(1, id);
+			this.resultSet = preparedStatement.executeQuery();
+
 			if (resultSet.next()) {
 				personVO.setId(resultSet.getShort(1));
 				personVO.setName(resultSet.getString(2));
@@ -54,15 +56,10 @@ public class PersonDAOimpl extends AbstractDAO implements PersonDAO {
 			Logger.getLogger(PersonDAOimpl.class.getName()).log(Level.SEVERE, null, ex);
 
 		} finally {
-			if (statement != null) {
+			if (this.preparedStatement != null) {
 				try {
-					statement.close();
-				} catch (SQLException ex) {
-				}
-			}
-			if (connection != null) {
-				try {
-					connection.close();
+					this.preparedStatement.close();
+					this.connection.close();
 				} catch (SQLException ex) {
 				}
 			}
@@ -72,53 +69,107 @@ public class PersonDAOimpl extends AbstractDAO implements PersonDAO {
 
 	@Override
 	public List<PersonVO> retrieveAll() {
-		throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
-																		// Tools | Templates.
+		List<PersonVO> personVO = null;
+		try {
+			personVO= new ArrayList<>();
+			this.connection= getConnection();
+			this.preparedStatement = this.connection.prepareStatement("SELECT * FROM person");
+			this.resultSet  = this.preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+				PersonVO temp_personVO= new PersonVO();
+				temp_personVO.setId(resultSet.getShort(1));
+				temp_personVO.setName(resultSet.getString(2));
+				temp_personVO.setLastName(resultSet.getString(3));
+				temp_personVO.setAge(resultSet.getShort(4));
+				temp_personVO.setPhysicalFeatures(resultSet.getString(5));
+				temp_personVO.setImage(resultSet.getString(6));
+				temp_personVO.setDescription(resultSet.getString(7));
+				temp_personVO.setTemporaryShelter(resultSet.getShort(8));
+				personVO.add(temp_personVO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return personVO;
 	}
 
 	@Override
 	public int update(PersonVO person) {
-		throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
-																		// Tools | Templates.
+		int rowsAffected = 0;
+		try {
+			String sql = "INSERT INTO person(first_name, last_name, age, physical_features,"
+					+ "image, description, temporary_shelter_id) values ( ? , ? , ? , ? , ? , ? , ? )";
+
+			this.preparedStatement = this.connection.prepareStatement(sql);
+			this.preparedStatement.setString(1, person.getName());
+			this.preparedStatement.setString(2, person.getLastName());
+			this.preparedStatement.setShort(3, person.getAge());
+			this.preparedStatement.setString(4, person.getPhysicalFeatures());
+			this.preparedStatement.setString(5, person.getImage());
+			this.preparedStatement.setString(6, person.getDescription());
+			this.preparedStatement.setShort(7, person.getTemporaryShelter());
+			rowsAffected = this.preparedStatement.executeUpdate();
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		} finally {
+			if (preparedStatement != null) {
+				try {
+					this.preparedStatement.close();
+					this.connection.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return rowsAffected;
 	}
 
 	@Override
 	public int delete(int id) {
-		throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
-																		// Tools | Templates.
+		int rowsAffected = 0;
+		try {
+			this.connection = getConnection();
+			this.preparedStatement = this.connection.prepareStatement("delete from person where person_id = ? ");
+			this.preparedStatement.setInt(1, id);
+			rowsAffected = this.preparedStatement.executeUpdate();
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		} finally {
+			if (preparedStatement != null) {
+				try {
+					this.preparedStatement.close();
+					this.connection.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return rowsAffected;
 	}
 
 	@Override
 	public String create(PersonVO person) {
-		boolean successful = false;
-		PreparedStatement statement = null;
 		try {
-			connection = getConnection();
+			this.connection = getConnection();
 			String sql = "INSERT INTO person(first_name, last_name, age, physical_features,"
 					+ "image, description, temporary_shelter_id) values ( ? , ? , ? , ? , ? , ? , ? )";
 
-			statement = connection.prepareStatement(sql);
-			statement.setString(1, person.getName());
-			statement.setString(2, person.getLastName());
-			statement.setShort(3, person.getAge());
-			statement.setString(4, person.getPhysicalFeatures());
-			statement.setString(5, person.getImage());
-			statement.setString(6, person.getDescription());
-			statement.setShort(7, person.getTemporaryShelter());
-			successful = statement.execute();
+			this.preparedStatement = this.connection.prepareStatement(sql);
+			this.preparedStatement.setString(1, person.getName());
+			this.preparedStatement.setString(2, person.getLastName());
+			this.preparedStatement.setShort(3, person.getAge());
+			this.preparedStatement.setString(4, person.getPhysicalFeatures());
+			this.preparedStatement.setString(5, person.getImage());
+			this.preparedStatement.setString(6, person.getDescription());
+			this.preparedStatement.setShort(7, person.getTemporaryShelter());
+			this.preparedStatement.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(PersonDAOimpl.class.getName()).log(Level.SEVERE, null, ex);
 
 		} finally {
-			if (statement != null) {
+			if (this.preparedStatement != null) {
 				try {
-					statement.close();
-				} catch (SQLException ex) {
-				}
-			}
-			if (connection != null) {
-				try {
-					connection.close();
+					this.preparedStatement.close();
+					this.connection.close();
 				} catch (SQLException ex) {
 				}
 			}
